@@ -5,7 +5,7 @@ public abstract record Id
     protected Id(string prefix, string? identifier = null)
     {
         Prefix = prefix.ToLowerInvariant();
-        Identifier = identifier ?? Guid.NewGuid().ToString().ToLowerInvariant();
+        Identifier = identifier ?? Guid.NewGuid().ToString("N").ToLowerInvariant();
     }
 
     public string Prefix { get; init; }
@@ -13,7 +13,7 @@ public abstract record Id
 
     public sealed override string ToString()
     {
-        return $"{Prefix}/{Identifier}";
+        return $"{Prefix}-{Identifier}";
     }
 
     public static implicit operator string(Id id)

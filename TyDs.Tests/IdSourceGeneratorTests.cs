@@ -50,7 +50,7 @@ public class IdSourceGeneratorTests
     [Fact]
     public void Construct_FakeId()
     {
-        IdParser.TryParse("fake/123", out var id).ShouldBe(false);
+        IdParser.TryParse("fake-123", out var id).ShouldBe(false);
 
         id.ShouldBe(null);
     }
@@ -58,13 +58,13 @@ public class IdSourceGeneratorTests
     [Fact]
     public void ParseId()
     {
-        IdParser.TryParse("b/123", out var b).ShouldBe(true);
+        IdParser.TryParse("b-123", out var b).ShouldBe(true);
 
         var bId = b.ShouldBeAssignableTo<BId>()!;
         bId.Prefix.ShouldBe("b");
         bId.Identifier.ShouldBe("123");
 
-        IdParser.TryParse("a/abc", out var a).ShouldBe(true);
+        IdParser.TryParse("a-abc", out var a).ShouldBe(true);
 
         var aId = a.ShouldBeAssignableTo<AId>()!;
         aId.Prefix.ShouldBe("a");
@@ -74,7 +74,7 @@ public class IdSourceGeneratorTests
     [Fact]
     public void ParseId_NotExiting()
     {
-        IdParser.TryParse("c/123", out var b).ShouldBe(false);
+        IdParser.TryParse("c-123", out var b).ShouldBe(false);
 
         b.ShouldBe(null);
     }
@@ -82,7 +82,7 @@ public class IdSourceGeneratorTests
     [Fact]
     public void ParseId_CaseInsensitive()
     {
-        IdParser.TryParse("A/123", out var a).ShouldBe(true);
+        IdParser.TryParse("A-123", out var a).ShouldBe(true);
 
         var aId = a.ShouldBeAssignableTo<AId>()!;
         aId.Prefix.ShouldBe("a");
@@ -109,8 +109,8 @@ public class IdSourceGeneratorTests
     [Fact]
     public void Equality_OtherIdType()
     {
-        IdParser.TryParse("a/123", out var id1).ShouldBe(true);
-        IdParser.TryParse("b/123", out var id2).ShouldBe(true);
+        IdParser.TryParse("a-123", out var id1).ShouldBe(true);
+        IdParser.TryParse("b-123", out var id2).ShouldBe(true);
 
         id1.ShouldNotBe(id2);
     }
@@ -118,8 +118,8 @@ public class IdSourceGeneratorTests
     [Fact]
     public void Equality_CaseInsensitive()
     {
-        IdParser.TryParse("a/abc", out var id1).ShouldBe(true);
-        IdParser.TryParse("a/ABC", out var id2).ShouldBe(true);
+        IdParser.TryParse("a-abc", out var id1).ShouldBe(true);
+        IdParser.TryParse("a-ABC", out var id2).ShouldBe(true);
 
         id1.ShouldBe(id2);
     }
