@@ -14,7 +14,7 @@ namespace TyDs
                 return false;
             }
 
-            var segments = id.Split('-');
+            var segments = id.Split('.');
 
             if (segments.Length != 2)
             {
@@ -32,6 +32,8 @@ namespace TyDs
 "a" => typeof(TyDs.Tests.AId),
 "b" => typeof(TyDs.Tests.BId),
 "q" => typeof(TyDs.Tests.QualifiedId),
+"faky-fake" => typeof(TyDs.Tests.IdWithDashes),
+"faky.fake" => typeof(TyDs.Tests.IdWithDots),
 
                 _ => null
             };

@@ -14,7 +14,7 @@ namespace TyDs
                 return false;
             }
 
-            var segments = id.Split('-');
+            var segments = id.Split('.');
 
             if (segments.Length != 2)
             {
